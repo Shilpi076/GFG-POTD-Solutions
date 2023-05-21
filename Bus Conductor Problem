@@ -1,0 +1,17 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/c6ced401352fd126b89129cd562a9247f057e40e/1
+Solution :-
+//Calculate the distance of each passenger to the nearest chair.
+
+// The distance of each passenger to the nearest chair will be given by sorting both the passengers array and chairs array and finding the difference between ith passenger position and ith chair position.
+
+Code :-
+int findMoves(int n, vector<int> chairs, vector<int> passengers) {
+        int steps = 0;
+        sort(chairs.begin(),chairs.end());
+        sort(passengers.begin(),passengers.end());
+        for(int i=0; i<n; i++){
+            steps += abs(chairs[i]-passengers[i]);
+        }
+        
+        return steps;
+}
