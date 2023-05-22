@@ -1,6 +1,16 @@
 Problem Link :- https://practice.geeksforgeeks.org/problems/fbcd1787378ed396a8f24b47872cbc0ad2624f1d/1
 Solution :-
 // Indegree of a node is one only when it is isolated from the main node, it does not have any child node.
+-> To convert the given tree into a star tree all the nodes must be connected to a central node. The node which have indegree more than one can be a central node but the question is not to find the central node. In the given problem we need to find all the number of nodes which cannot be central node in any case and we will merge them with the node which have the possibility to be the central node.
+
+-> All the nodes which have indegree one cannot have any possibility of being the central node because it will have indegree one only when it does not have any child, it is only connected to parent node so that cannot be the central node in any case because the central node of star tree must have at least one child (except the case when the given tree has only one node).
+
+-> So all the nodes with indegree more than one can be merged to a node(which can be a central node).
+
+-> So to the answer is the difference between total number of nodes and the nodes with indegree one.
+
+Code :-
+
  int solve(int n, vector<int> p){
         // code here
           // code here
