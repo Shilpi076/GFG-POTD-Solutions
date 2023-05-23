@@ -1,0 +1,27 @@
+Problem Link :- 
+Solution :-
+-> In the given question even though the mirror tree preorder is given but it is of no use.
+-> No need of Mirror Preorder.
+-> Preorder of a binary tree is like -> ROOT->LEFT->RIGHT so we take the lower index as root and low+1 to mid will be left subtree and mid+1 to high will be right subtree.
+-> make a function which has low=0 and high=pre.size()-1 pointer pointing to start and end of the "pre" array.
+
+-> Make the  root as root=pre[low]{Meant the first number of the array pre will be root}.
+-> After that put a check condition that is our low is less than the high if yes,
+-> SPLIT THE ARARAY INTO LOW+1 to MID{LEFT SUBTREE} AND MID+1 TO HIGH{RIGHT SUBTREE}.
+-> IF NO THEN RETURN ROOT.
+Code:-
+Node*helper(int pre[],int l,int h){
+        int mid=(l+h)/2;
+        Node*root=new Node(pre[l]);
+        if(l<h){
+        root ->left=helper(pre,l+1,mid);
+        root->right=helper(pre,mid+1,h);
+        }
+        return root;
+    }
+  
+    Node* constructBinaryTree(int pre[], int preMirror[], int size)
+    {
+        // Code here
+        return helper(pre,0,size-1);
+    }
