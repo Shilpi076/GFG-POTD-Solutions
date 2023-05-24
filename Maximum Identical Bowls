@@ -1,0 +1,26 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/5bfe93cc7f5a214bc6342709c78bc3dceba0f1c1/1
+Solution :-
+-> In the given problem it is just asking the number of bowls containing same number of cookies of the total number of cookies. 
+-> So, we just have to equally distribute cookies to maximum number of bowls.
+-> First we will calculate the total number of cookies.
+checking condition -> Then we start checking if the (total number of cookies % (maximum number of bowls with equally distributed cookies of all cookies)) == 0
+-> To find maximum number of of bowls with equally distributed cookies of all cookies we start checking the above condition by taking maximum number of bowls with equally distributed cookies of all cookies = N
+-> Then we start decrementing the value of  N until we get the above condition satisfied.
+-> When the checking condition is satisfied which means we have got maximum number of bowls with equally distributed cookies of all cookies, we return the value of N.
+-> If checking condition is not satisfied after iterating through all the possible values of N (maximum number of bowls with equally distributed cookies of all cookies) we return 0
+Code :-
+int getMaximum(int N, vector<int> &arr) {
+        // code here
+        
+        long long int sum = 0;
+        for(auto i:arr){
+            sum += i;
+        }
+        
+        while(N){
+            if(sum%N==0)
+                return N;
+            N--;
+        }
+        return N;
+    }
