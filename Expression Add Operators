@@ -3,12 +3,13 @@ Problem Link :- https://practice.geeksforgeeks.org/problems/expression-add-opera
 Solution :
 Approach Used :-
 => In the given question we have to find all the possible arrangement in a definite order (basically permutation) of the given string (here the string characters will be in the definite order according to their index, we cannot change the order of characters in the string)
-=> After inserting the given operators ("+", "-", "*") in the string which contain only digits (0-9) it with evaluate to a value.
-=> If the value obtained after evaluating the expression obtained by inserting the given operators into the string is equal to the target then we put that expression (string formed after inserting operators) into the answer vector.
+=> After inserting the given operators ("+", "-", "*") in the string which contain only digits (0-9) it will evaluate to a value.
+=> If the value obtained after evaluating the expression obtained by inserting the given operators into the string if it is equal to the target then we put that expression (string formed after inserting operators) into the answer vector.
 => So we have to look for all possible arrangements (permutation along with combination(selection of which operator))  of the operators in the string so that the resultant string will evaluate the target.
-=> So like we form a number from a string by taking its characters one by one and multiplying by 10 and adding with the previous value we have to form, we will do it here also,
+=> So we form a number from a string by taking its characters one by one and multiplying by 10(to form n digit number (n = 1 to total number of characters in the string))
 => We will start taking numbers(characters of the string) and after taking n digit number(n = 1 to total number of characters in the string), recursively we combine the obtained n digit number with the operators and evaluate it with another number which we will get after recursively iterating over the string
-=> The explanation sounds little bit unclear but it will be more clear and understandable after doing dry run and coding it.
+=> The explanation sounds little bit unclear but it will be more clear and understandable after doing dry run and trying it ourselves by doing some mathematical operations(according to the given problem) over the string.
+
 
 Code :-
 void f(int ind,string s,int target,vector<string> &ans,string tmp,long long prev,long long res)
