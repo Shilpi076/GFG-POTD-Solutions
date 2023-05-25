@@ -1,0 +1,49 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/expression-add-operators/1
+
+Solution :
+Approach Used :-
+=> In the given question we have to find all the possible arrangement in a definite order (basically permutation) of the given string (here the string characters will be in the definite order according to their index, we cannot change the order of characters in the string)
+=> After inserting the given operators ("+", "-", "*") in the string which contain only digits (0-9) it with evaluate to a value.
+=> If the value obtained after evaluating the expression obtained by inserting the given operators into the string is equal to the target then we put that expression (string formed after inserting operators) into the answer vector.
+=> So we have to look for all possible arrangements (permutation along with combination(selection of which operator))  of the operators in the string so that the resultant string will evaluate the target.
+=> So like we form a number from a string by taking its characters one by one and multiplying by 10 and adding with the previous value we have to form, we will do it here also,
+=> We will start taking numbers(characters of the string) and after taking n digit number(n = 1 to total number of characters in the string), recursively we combine the obtained n digit number with the operators and evaluate it with another number which we will get after recursively iterating over the string
+=> The explanation sounds little bit unclear but it will be more clear and understandable after doing dry run and coding it.
+
+Code :-
+void f(int ind,string s,int target,vector<string> &ans,string tmp,long long prev,long long res)
+  {
+      if(ind==s.size())
+      {
+          if(res==target)
+          ans.push_back(tmp);
+          
+          return;
+      }
+      string st="";
+      long long curr=0;
+      for(int i=ind;i<s.size();i++)
+      {
+          if(i>ind && s[ind]=='0')
+          break;
+          st+=s[i];
+          curr=curr*10+s[i]-'0';
+          if(ind==0)
+          f(i+1,s,target,ans,tmp+st,curr,curr);
+          else
+          {
+              f(i+1,s,target,ans,tmp+"+"+st,curr,res+curr);
+              f(i+1,s,target,ans,tmp+"-"+st,-curr,res-curr);
+              f(i+1,s,target,ans,tmp+"*"+st,prev*curr,res-prev+prev*curr);
+          }
+      }
+      return;
+  }
+  
+    vector<string> addOperators(string s, int target) {
+        vector<string> ans;
+        string tmp="";
+        long long prev=0;
+        f(0,s,target,ans,tmp,prev,0);
+        return ans;
+    }
