@@ -1,0 +1,32 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/express-as-sum-of-power-of-natural-numbers5647/1
+Solution :
+=> The given problem is clearly a dynamic programming problem.
+=> In the given question we are asked to find total number of ways such that the given integer number can be expressed as sum of power of natural numbers.
+=> So we will start iterating from 1 and increment it to maximum (given integer number) and for each possible number in the range 1 to n (given integer number which is to be expressed sum of power of natural numbers
+=> we have two possibilities, either take that number in the sum or not, so if the difference of n (given interger number) and power of number generated while iterating through 1 to n
+   is greater than 0 we have take it to sum, and not pick condition is valid for every possible natural numbers (generated while iterating through 1 to n).
+   So we start filling the dp array by taking and not taking the power of natural number to the sum.
+
+DP Memoization Code :-
+int solve(int num, int n ,int x, vector<vector<int>> &dp){
+        if(n==0) return 1;
+        if(n<0) return 0;
+        
+        if(pow(num,x) > n) return 0;
+        
+        if(dp[num][n] != -1) return dp[num][n];
+        
+        int pick = 0;
+        if(n-pow(num,x) >= 0){
+            pick = solve(num+1,n-pow(num,x),x,dp);
+        }
+        int notpick = solve(num+1,n,x,dp);
+        
+        return dp[num][n]=(pick + notpick) % (int)(1e9+7);
+    }
+    int numOfWays(int n, int x)
+    {
+        // code here
+        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
+        return solve(1,n,x,dp);
+    }
