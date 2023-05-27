@@ -1,0 +1,34 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/modify-linked-list-1-0546/1
+Solution :-
+The C++ solution modifies a singly linked list according to the rules specified in the problem statement. Let's break down the solution and explain each point in relation to the problem statement:
+=> The function `modifyTheList` takes a pointer to the head node of the linked list as input and returns the modified linked list.
+=> The function `modify` is a recursive helper function that performs the modification on the linked list.
+=> The `temp` variable is initialized with the head node of the linked list.
+=> The `modify` function is called with the head node and the address of `temp`. The address of `temp` is passed to keep track of the current node to be modified.
+=> The `modify` function is implemented using recursion. It follows a post-order traversal approach, where modifications are made while backtracking.
+=> The base case of the recursion is reached when the current node (`a`) is `NULL`. In this case, it returns `true`.
+=> The recursive call `modify(a->next, b)` is made to move to the next node in the linked list. It returns `false` if any subsequent node returns `false` (indicating a violation of the condition in point 3).
+=> The condition `if (a == (*b) || a->next == (*b))` checks if the current node (`a`) is equal to `(*b)` or the next node of `a` is equal to `(*b)`. This condition is used to determine whether to stop modifying the nodes or continue.
+=> If the condition in point 8 is not met, the values of the current node (`a`) and `(*b)` are swapped, and the value of `(*b)` is updated by subtracting `a->data` from it. This modification is in accordance with the first half modification rule mentioned in the problem statement.
+=> After the modification, the pointer `(*b)` is moved to the next node using `(*b) = (*b)->next`.
+=> Finally, the modified linked list is returned.
+=> In summary, the solution uses a recursive approach to modify the linked list. It ensures that the modifications are made only for the first half of the nodes, while the second half of the nodes remains unchanged. The implementation swaps values between the current node and a reference node (`(*b)`), and updates the reference node value accordingly. The `(*b)` pointer keeps track of the node in the second half that needs to be updated next.
+Code :-
+bool modify(Node* a, Node **b){
+        if(!a) return 1;
+        if(!modify(a->next,b) || a==(*b) || a->next == (*b))
+            return 0;
+            
+        swap((*b)->data, a->data);
+        (*b)->data -= a->data;
+        (*b) = (*b)->next;
+        return 1;
+    }
+    
+    struct Node* modifyTheList(struct Node *head)
+    {
+        //add code here.
+        Node* temp = head;
+        modify(head,&temp);
+        return head;
+    }
