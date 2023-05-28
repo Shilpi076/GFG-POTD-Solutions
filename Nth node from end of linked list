@@ -1,0 +1,29 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/nth-node-from-end-of-linked-list/1
+
+Solution :
+=> nth node from the end of linked list is (l-n+1)th node from the head of linked list. 
+=> So after calculating length of the linked list we will find the (l-n+1)th node from the beginning of linked list and return it.
+Code :-
+int getNthFromLast(Node *head, int n)
+    {
+           // Your code here
+            int l = 0;
+    Node* temp = head;
+    while(temp!=NULL){
+        temp = temp->next;
+        l++;
+    }
+    temp = head;
+    int count = 1;
+    if(l < n)
+    return -1;
+    while(count != (l-n + 1) and temp != NULL){
+        temp = temp->next;
+        count++;
+    }
+    
+    
+        return temp->data;
+           
+           
+    }
