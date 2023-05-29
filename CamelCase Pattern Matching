@@ -1,0 +1,38 @@
+Problem Link : https://practice.geeksforgeeks.org/problems/camelcase-pattern-matching2259/1
+Solution :-
+=> This problem has to be solved step by step without much thinking.
+=> We will traverse in dictionary and for each word we just check that it matches the pattern or not
+=> Pattern matching simply done by checking an upper character. If at any point pattern matched with required character we return true from that time.
+=> If pattern matched, we will add this to our answer.
+=> Lastly, sort the answer vector to make it lexiograpcally arrangement and if answer vector still empty, append -1 to that vector and return the vector.
+Code :-
+bool matchPattern(string s, string Pattern){
+        string temp = "";
+        for(auto c:s){
+            if(isupper(c)){
+                temp += c;
+            }
+            if(temp==Pattern)
+                return true;
+        }
+        
+        return temp==Pattern;
+    }
+    
+    vector<string> CamelCase(int N, vector<string> Dictionary, string Pattern) {
+        // code here
+        vector<string> ans;
+        
+        for(auto s:Dictionary){
+            if(matchPattern(s,Pattern)){
+                ans.push_back(s);
+            }
+        }
+        
+        if(ans.empty())
+            ans.push_back("-1");
+            
+        sort(ans.begin(),ans.end());
+            
+        return ans;
+    }
