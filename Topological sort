@@ -1,0 +1,44 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/topological-sort/1
+
+Solution :-
+=> In topological sort of Directed Acyclic Graph (DAG) we visit a node only after all its dependencies are visited.
+=> Node with indegree zero will have no dependencies and has to be visited first while traversing the DAG.
+=> So we will first calculate the indegree for all the nodes in DAG.
+=> We will use queue for doing the Breadth First Search (BFS) algorithm, to traverse the nodes with indegree zero first and then, after visiting that node we will remove the dependency of other nodes connected to it.
+=> So after visiting a node in queue which will contain nodes with indegree zero we will decrement the indegree of adjacent nodes connected to it.
+=> We will keep checking the indegree of node while doing the BFS and when indegree of a node will be zero, we will push the node value in queue and answer vector.
+=> While the size of queue will not be equal to zero we will keep doing the BFS traversal, to collect the nodes according to their topological ordering.
+
+Code :-
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    // code here
+	    int indegree[V] = {0};
+	    vector<int> ans;
+	    queue<int> q;
+	    
+	    for(int i=0; i<V; i++){
+	        for(auto x:adj[i]){
+	            indegree[x]++;
+	        }
+	    }
+	    for(int i=0; i<V; i++){
+	        if(indegree[i]==0){
+	            q.push(i);
+	            ans.push_back(i);
+	        }
+	    }
+	    
+	    while(!q.empty()){
+	        int temp = q.front();
+	        q.pop();
+	        for(auto i:adj[temp]){
+	            indegree[i]--;
+	            if(indegree[i]==0){
+	                q.push(i);
+	                ans.push_back(i);
+	            }
+	        }
+	    }
+	    return ans;
+	}
