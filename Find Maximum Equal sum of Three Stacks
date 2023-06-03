@@ -1,0 +1,33 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/find-maximum-equal-sum-of-three-stacks/1
+
+Solution :-
+=> In the given problem, stack is represented in the form of array, where top element of stack is the first element of the array.
+=> We will calculate cumulative sum of the array from the end of the array.
+=> We are calculating cumulative sum of the array from the end because in case we have to pop an element from the stack then the sum of remaining elements will be still there
+   in the next index of the top element.
+=> Then we will start iterating from the beginning of the cumulative sum array of three stacks, then we check if sum at an index is equal for all the three arrays then we 
+   return that sum.
+=> If the above condition is not satisfied then we will check the minimum sum in the cumulative sum arrays at the curent index of all the three arrays.
+=> Whichever array will have sum at its index greater than the minimum sum obtained in the above step, we will increment that array index, which means we have popped the element
+   which was previously stored at that index.
+=> This way we will iterate over three cumulative sum arrays and obtained the maximum equal sum of the three stacks.
+
+Code :-
+int maxEqualSum(int N1,int N2,int N3,vector<int> &S1,vector<int> &S2,vector<int> &S3){
+        for(int i=N1-2; i>=0; i--) S1[i]+=S1[i+1];
+        for(int i=N2-2; i>=0; i--) S2[i]+=S2[i+1];
+        for(int i=N3-2; i>=0; i--) S3[i]+=S3[i+1];
+        
+        int i,j,k;
+        i=j=k=0;
+        
+        while(i<N1 and j<N2 and k<N3){
+            if((S1[i]==S2[j]) and (S2[j]==S3[k])) return S1[i];
+            int mini = min({S1[i],S2[j],S3[k]});
+            if(S1[i] > mini) i++;
+            if(S2[j] > mini) j++;
+            if(S3[k] > mini) k++;
+        }
+        
+        return 0;
+    }
