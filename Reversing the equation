@@ -1,0 +1,32 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/reversing-the-equation2205/1
+Solution :-
+=> The string can be reversed using stack.
+=> We will start traversing from the end of string.
+=> Then we will check if the character at an index is a digit (0-9) then we will push that element to stack.
+=> Else we will start adding the top element of the stack to our answer string and pop the elements of stack until it's empty and at last we will add the character(operator) to the answer string.
+=> After traversing the given string if still there exist elements in the stack then we keep adding the top element of stack to our answer string and pop the added element until the stack is empty.
+Code :-
+string reverseEqn (string s)
+        {
+            //code here.
+            stack<char> st;
+            string ans = "";
+            
+            for(int i=s.size()-1; i>=0; i--){
+                if(s[i]>='0' and s[i]<='9') st.push(s[i]);
+                else{
+                    while(!st.empty()){
+                        ans += st.top();
+                        st.pop();
+                    }
+                    ans += s[i];
+                }
+            }
+            
+            while(!st.empty()){
+                ans += st.top();
+                st.pop();
+            }
+            
+            return ans;
+        }
