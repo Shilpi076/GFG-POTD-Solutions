@@ -1,0 +1,15 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/find-the-closest-element-in-bst/1
+Solution :-
+=> We can use post order traversal of BST to check the minimum absolute difference of given element and any element in BST.
+Code :-
+int minDiff(Node *root, int K)
+    {
+        //Your code here
+         if (root == nullptr)
+            return INT_MAX;
+        
+        int a = minDiff(root->left, K);
+        int b = minDiff(root->right, K);
+
+        return min( abs(root->data - K), min(a, b) );
+    }
