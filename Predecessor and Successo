@@ -1,0 +1,48 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/predecessor-and-successor/1
+Solution :
+=> First we have the node whose value is equal to the given key.
+=> As the tree given is BST so if key value is less than the root then we will move to root's left, else we will search in right half of the given tree.
+=> When we will get the node whose value is equal to the key then we will find its predecessor and successor.
+=> Predecessor of a given node will be the element appearing before it in inorder traversal.
+=> Successor of a given node will be the element appearing after it in inorder traversal.
+=> So, predecessor of a given node will be the rightmost element in its left half tree because the rightmost element's value in the left half tree will have value just smaller than the node.
+=> And, successor of a given node will be the leftmost element in its right half tree because the leftmost element's value in the right half tree will have value just greater than the node.
+Code :-
+Node* findPre(Node* root){
+    Node* curr=root->left;
+    while(curr->right!=NULL){
+        curr=curr->right;
+    }
+    return curr;
+}
+
+Node* findSuc(Node* root){
+    Node* curr=root->right;
+    while(curr->left!=NULL){
+        curr=curr->left;
+    }
+    return curr;
+}
+
+
+void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
+{
+    if(root==NULL)
+    return;
+
+   if(root->key == key) {
+       if(root->left) pre = findPre(root);
+       if(root->right) suc = findSuc(root);
+       return;
+   }
+   if(root->key < key){
+       pre = root;
+       findPreSuc(root->right,pre,suc,key);
+       
+   }
+   else{
+       suc=root;
+       findPreSuc(root->left,pre,suc,key);
+   }
+
+}
