@@ -1,0 +1,21 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/least-prime-factor5216/1
+Solution :-
+=> make a prime no vector and check if it divide current no or not if not then ad it to prime no  and answer vector
+Code :-
+   int prime(int n){
+        for(int i=2;i<=n;i++){
+            if(n%i==0)
+            return i;
+        }
+        return n;
+    }
+    vector<int> leastPrimeFactor(int n) {
+        // code here
+        vector<int> ans;
+        ans.push_back(0);
+        ans.push_back(1);
+        for(int i=2;i<=n;i++){
+            ans.push_back(prime(i));
+        }
+        return ans;
+    }
