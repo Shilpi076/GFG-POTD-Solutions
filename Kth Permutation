@@ -1,6 +1,6 @@
 Problem Link :- https://practice.geeksforgeeks.org/problems/find-kth-permutation-0932/1
 Solution :-
-
+=> The first digit can be determined by dividing k by (n-1)!. The remaining digits can be obtained by recursively applying the same process to the remaining numbers.
 string kthPermutation(int n, int k)
     {
         int fact=1;
