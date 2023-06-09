@@ -1,0 +1,40 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/permutations-of-a-given-string2041/1
+Solution :-
+=> We can use backtracking to find all permutations of string.
+=> To find all unique permutations we will use set because in set we cannot insert duplicate elements and uniqueness of each string will be maintained.
+=> We will call a recursive function that starts with leftmost index to string to rightmost index.
+=> To generate a permuation (ordering) we will swap the leftmost index character will the index on which we are iterating (index that will iterate from string's leftmost
+position to rightmost position)
+=> After backtracking i.e. coming back from resursion for a particular leftmost index we will again re-swap it because we will have to generate permuation for another index
+(leftmost index will be incremented by one, to get more idea draw a recursion tree).
+
+Code :-
+void permute(string S, int l, int r, set<string> &st){
+	        if(l==r){
+	            st.insert(S);
+	            return;
+	        }
+	        
+	        for(int i=l; i<=r; i++){
+	            swap(S[i],S[l]);
+	            permute(S,l+1,r,st);
+	            swap(S[i],S[l]);
+	        }
+	    }
+	
+		vector<string>find_permutation(string S)
+		{
+		    // Code here there
+		    
+		   set<string> st;
+		   permute(S,0,S.size()-1,st);
+		   
+		   vector<string> ans;
+		   
+		   for(auto i:st){
+		       ans.push_back(i);
+		   }
+		   sort(ans.begin(),ans.end());
+		   
+		   return ans;
+		}
