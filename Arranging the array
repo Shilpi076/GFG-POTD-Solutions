@@ -1,0 +1,55 @@
+Problem link :- https://practice.geeksforgeeks.org/problems/arranging-the-array1131/1
+
+Solution :-
+=> The brute force approach to solve this problem is to make two vectors/arrays that will store positive and neagative elements and finally merge those two vector/array to one.
+=> But as the expected time complexity is O(nlogn) so we can use merge sort algorithm here.
+=> We will apply merge sort algorithm here with some modifications.
+=> In the merge sort, when we will be merging two arrays(left to mid and mid+1 to right) then we will check for the negative element condition.
+=> If in neither of the two half arrays which we are merging, element is negative then we have to break the loop in which we are merging the two arrays.
+=> If we will not break the above mentioned loop then it will result in run time error because the indexes on which we are iterating for the two half arrays will not be incremented
+  (negative condition not achieved) and that will result in an infinite loop.
+  
+  Code :-
+  void merge(int arr[], int l, int r){
+            int mid = (l+r)/2;
+            int l1 = mid-l+1;
+            int l2 = r-mid;
+            int arr1[l1];
+            int arr2[l2];
+            for(int i=0; i<l1; i++){
+                arr1[i] = arr[l+i];
+            }
+            for(int j=0; j<l2; j++){
+                arr2[j] = arr[mid+j+1];
+            }
+            int k = l, i = 0, j = 0;
+            
+            while(i<l1 and j<l2){
+                if(arr1[i] < 0){
+                    arr[k++] = arr1[i++];
+                }
+                else if(arr2[j] < 0){
+                    arr[k++] = arr2[j++];
+                }
+                else break;
+            }
+            
+            while(i<l1) arr[k++] = arr1[i++];
+            while(j<l2) arr[k++] = arr2[j++];
+        }
+        
+        void mergesort(int arr[], int l, int r){
+            if(l<r){
+                int mid = (l+r)/2;
+                mergesort(arr,l,mid);
+                mergesort(arr,mid+1,r);
+                merge(arr,l,r);
+            }
+        }
+        
+        void Rearrange(int arr[], int n)
+        {
+            // Your code goes here
+            
+            mergesort(arr,0,n-1);
+        }
