@@ -3,7 +3,7 @@ Solution :-
 => We can use backtracking to find all permutations of string.
 => To find all unique permutations we will use set because in set we cannot insert duplicate elements and uniqueness of each string will be maintained.
 => We will call a recursive function that starts with leftmost index to string to rightmost index.
-=> To generate a permuation (ordering) we will swap the leftmost index character will the index on which we are iterating (index that will iterate from string's leftmost
+=> To generate a permuation (ordering) we will swap the leftmost index character with the index on which we are iterating (index that will iterate from string's leftmost
 position to rightmost position)
 => After backtracking i.e. coming back from resursion for a particular leftmost index we will again re-swap it because we will have to generate permuation for another index
 (leftmost index will be incremented by one, to get more idea draw a recursion tree).
