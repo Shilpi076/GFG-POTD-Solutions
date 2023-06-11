@@ -1,0 +1,13 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/adding-ones3628/1
+
+Solution :-
+=> All the elements with index greater than and equal to index given in update array will be incremented by one.
+=> So, instead of incrementing all the elements after the given index in update array by one, we will only increment the value with the index given in update array and use 
+   cumulative sum approach to update the rest of the array.
+   Code :-
+     for(int i = 0; i < k; i++)
+            a[updates[i]-1]++;
+        for(int i = 1; i < n; i++){
+            a[i] += a[i - 1];
+        }
+   
