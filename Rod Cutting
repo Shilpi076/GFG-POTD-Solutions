@@ -1,0 +1,31 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/rod-cutting0840/1
+
+Solution :-
+=> This is clearly a DP problem.
+=> We will try to maximize our total price by assigning our dp array to the maximum of price obtained by either cutting a piece of length i or not cutting, we will iterate 
+   over all possible values of i , i.e. from 0 to n-1, where n is length of the rod.
+   
+  DP Memoization code :-
+   int solve(int i, int n, int price[], int rodlength, vector<vector<int>> &dp){
+        if(i==n) return -1e9;
+        
+        if(rodlength==0) return 0;
+        
+        if(dp[i][rodlength] != -1) return dp[i][rodlength];
+        
+        int notTake = solve(i+1,n,price,rodlength,dp);
+        
+        int take = -1e9;
+        
+        if(rodlength >= (i+1))
+            take = price[i] + solve(i,n,price,rodlength-(i+1),dp);
+            
+        return dp[i][rodlength] = max(take,notTake);
+    }
+    
+    int cutRod(int price[], int n) {
+        //code here
+        vector<vector<int>> dp(n,vector<int>(n+1,-1));
+        return solve(0,n,price,n,dp);
+    }
+   
