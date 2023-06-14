@@ -1,0 +1,23 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/chinky-and-diamonds3340/1
+Solution :-
+=> To solve this problem we can use maxheap and to implement maxheap we will use priority queue.
+=> We will push all the elements of array into maxheap.
+=> Then add top element of priority queue to ans and simultaneously pop the top element from the priority queue and push priority queue's top element(which we had popped from the queue) to priority,
+  k number of times.
+  Code :-
+   long long maxDiamonds(int A[], int N, int K) {
+        // code here
+        priority_queue<int,vector<int>> pq;
+        for(int i=0; i<N; i++){
+            pq.push(A[i]);
+        }
+        long long ans = 0;
+        while(K--){
+            int temp = pq.top();
+            ans += temp;
+            pq.pop();
+            pq.push(temp/2);
+        }
+        
+        return ans;
+    }
