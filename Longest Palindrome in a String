@@ -1,0 +1,64 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/longest-palindrome-in-a-string3411/1
+Solution :-
+=> This is the best DP problem.
+=> In this problem, DP comes in the actual use where we store the past information and use that information to get the future result.
+=> To find longest palindrome in string we will keep a variable "gap"=>'g'  which will denote the distance of a particular character in the string from a definite index,
+   gap is basically the distance between two characters in the string, "gap"=>'g' can have values between 0 to n-1, where n is size of the string.
+=> A substring of any string will be palindrome only if its starting character and last character are equal and the substring lying between its first index and last index
+   will be palindrome.
+=> So we will use the same concept and use 2-d boolean type DP array where an element in the DP array let's say DP[i][j] will denote whether the substring starting from the index i 
+   and ending at index j is palindrome or not.
+=> The last index of any substring in the string can have values ranging from 0 to n-1, where n is size of the string, so the last index of any substring in the string will
+   be at a distance from 0 to n-1, where n is size of the string, and here we will use a variable "gap"=>'g' to symbolise the distance between two characters of the string.
+=> So if gap is zero between any two indexes of the string means the starting index and ending index of substring is same, it's a sustring of only one character, and a string
+   of one character is palindrome.
+=> And for any other values of gap we will check whether the starting and ending index of the sustring is equal and the substring between the starting and ending index is palindrome or not.
+
+DP tabulation code :-
+ string longestPalin (string S) {
+        // code here
+        
+        int mx = INT_MIN;
+        int n = S.size();
+        int st = 0;
+        vector<vector<int>> dp(n,vector<int>(n,false));
+        
+        for(int g=0; g<n; g++){
+            for(int i=0,j=g; j<n; i++,j++){
+                if(g==0){
+                    dp[i][j] = true;
+                    if(g+1 > mx){
+                        st = i;
+                        mx = g+1;
+                    }
+                }
+                else if(g==1){
+                    if(S[i] == S[j]){
+                        dp[i][j] = true;
+                        if(g+1 > mx){
+                            st = i;
+                            mx = g+1;
+                        }
+                    }
+                }
+                else {
+                    if(S[i] == S[j] and dp[i+1][j-1]==true){
+                        dp[i][j] = true;
+                        if(g+1 > mx){
+                        st = i;
+                        mx = g+1;
+                        }
+                    }
+                }
+            }
+        }
+        
+        string ans = "";
+        ans = S.substr(st,mx);
+        
+        return ans;
+        
+        
+    }
+   
+   
