@@ -1,0 +1,21 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/queue-operations/1
+Solution :-
+=> To keep count of each element inserted in the queue we will use map.
+=> When an element will be inserted in the queue the frequency of that element in the map will be incremented by one.
+Code :-
+unordered_map<int,int> mp;
+    // Function to insert element into the queue
+    void insert(queue<int> &q, int k){
+        // Your code here
+        q.push(k);
+        mp[k]++;
+    }
+    
+    // Function to find frequency of an element
+    // return the frequency of k
+    int findFrequency(queue<int> &q, int k){
+        // Your code here
+        if(mp[k]==0) return -1;
+        
+        return mp[k];
+    }
