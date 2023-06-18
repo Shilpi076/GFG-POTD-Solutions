@@ -1,0 +1,33 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/ticket-counter-2731/1
+Solution :-
+=> Since we have to remove elements from both ends of the queue, we can use doubly ended queue, deque.
+=> We will keep a variable check and initialize it with zero, since we have to alternately remove elements from both end of the queue, so whenever check is even (check%2==0) , elements will
+   be removed from the front and whenever check is odd elements will be removed from back of the queue.
+
+Code :-
+ int distributeTicket(int N, int k) {
+        // code here
+        deque<int> dq;
+        for(int i=1; i<=N; i++){
+            dq.push_back(i);
+        }
+        int check = 0,ans;
+        while(!dq.empty()){
+            if(check % 2 == 0){
+                for(int i=0; i<k; i++){
+                    ans = dq.front();
+                    dq.pop_front();
+                    if(dq.empty()) return ans;
+                }
+            }
+            else{
+                for(int i=0; i<k; i++){
+                    ans = dq.back();
+                    dq.pop_back();
+                    if(dq.empty()) return ans;
+                }
+            }
+            check++;
+        }
+        return ans;
+    }
