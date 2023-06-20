@@ -1,0 +1,12 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/-matchsticks-game4906/1
+Solution :-
+=> Since a person can pick maximum upto 4 matchsticks and A starts first and both A and B play alternately, so whenever N is multiple of five no matter how many matchsticks A pick he always end up loosing 
+so for N%5 == 0 we return -1.
+=> If N is not multiple of 5 then A  need to pick N%5 matchsticks to put player B in loose state and A can win.
+Code :-
+int matchGame(long long N) {
+        // code here
+        if(N%5 == 0)
+            return -1;
+        return (N%5);
+    }
