@@ -1,0 +1,10 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/reverse-coding2452/1
+Solution :-
+=> Sum of n natural numbers is n*(n+1)/2 .
+
+Code :-
+int sumOfNaturals(int n) {
+        // code here
+        int mod = 1e9+7;
+        return ((1LL*n*(n+1))/2)%mod;
+    }
