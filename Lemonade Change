@@ -1,0 +1,33 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/lemonade-change/1
+Solution :-
+=> Initialize the count of $5 and $10 with zero.
+=> If the customer pays in $20 then we check if we have $5 and $10 available, if not then return false.
+=> If the customer pays in $10, increment the count of $10 and then we check if we have $5 available, if not then return false.
+=> If the customer pays in $5 then increment the count of $5.
+Code :-
+bool lemonadeChange(int N, vector<int> &bills) {
+        // code here
+        int five =0, ten=0;
+        for(int i=0; i<bills.size(); i++){
+            if(bills[i]==20){
+                if(ten and five){
+                    ten--;
+                    five--;
+                }
+                else if(five>=3){
+                    five-=3;
+                }
+                else return false;
+            }
+            else if(bills[i]==10){
+                ten++;
+                if(five){
+                    five--;
+                }
+                else return false;
+            }
+            else five++;
+        }
+        
+        return true;
+    }
