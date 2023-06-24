@@ -1,0 +1,25 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/prefix-match-with-other-strings/1
+
+Solution :-
+=> Iterate over all the strings in the given array, if the array string's substring of length k matches with the given string substring of length of k then increment the value 
+   of count, which stores the number of count of strings in arr[] whose prefix of length k matches with the k length prefix of str.
+=> If k is greater than the length of given string whose prefix of k length is to be matched then we return 0.
+
+Code :-
+ int klengthpref(string arr[], int n, int k, string str){    
+        
+        if(k>str.length()) return 0;
+        
+        str = str.substr(0,k);
+        int count = 0;
+        
+        for(int i=0; i<n; i++){
+            if(str == arr[i].substr(0,k)){
+                count++;
+            }
+        }
+        
+        return count;
+        
+    }
+
