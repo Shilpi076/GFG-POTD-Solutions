@@ -1,0 +1,24 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/unique-rows-in-boolean-matrix/1
+Solution :-
+=> Kor keeping only unique rows in the ans vector we will use set.
+=> We will iterate over all rows in the matrix and check if it already present in the set, if not then insert it in the ans vector, and keep adding those rows to set.
+Code :-
+ vector<vector<int>> uniqueRow(int M[MAX][MAX],int row,int col)
+    {
+        //Your code here
+        set<vector<int>> st;
+        vector<vector<int>> ans;
+        for(int i=0; i<row; i++){
+            vector<int> temp;
+            for(int j=0; j<col; j++){
+                temp.push_back(M[i][j]);
+            }
+            if(st.find(temp)==st.end()){
+                ans.push_back(temp);
+            }
+            
+            st.insert(temp);
+        }
+        
+        return ans;
+    }
