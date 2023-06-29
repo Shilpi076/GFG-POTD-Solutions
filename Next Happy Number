@@ -1,0 +1,33 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/next-happy-number4538/1
+Solution :-
+=> For a number to be happy number sum of squares of its digits has to be 1, to solve this problem we can use recursion.
+=> The base condition of recursion will be if the number we are checking is single digit then if it is 1 or 7 then it is happy number, 7 is happy number because 7 square is
+    49 and then we if keep on squaring the digits and replacing it with sum of square of digits then it will lead to a sequence 7, 49, 97, 130, 10, 1, so 7 is a happy number.
+=> And if number is not single digit then then we keep on adding the square of its digits and replacing it with the sum of square of its digits and checking for happy number condition using recursion.
+Code :-
+ bool check(int N){
+        if(N>=0 and N<=9){
+            if(N==1 or N==7){
+                return true;
+            }
+            else return false;
+        }
+        
+        int sum = 0;
+        
+        while(N){
+            int digit = N%10;
+            sum += (digit*digit);
+            N = N/10;
+        }
+        
+        return check(sum);
+    }
+
+    int nextHappy(int N){
+        // code here
+        while(++N){
+            if(check(N))
+                return N;
+        }
+    }
