@@ -1,0 +1,15 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/copy-set-bits-in-range0623/1
+Solution :-
+=> To copy the set bits of 'Y' in the range L to R in 'X, we do bitwise or OR of y with x int the range l to r.
+Code :-
+  int setSetBit(int x, int y, int l, int r){
+        // code here
+        l--;
+        r--;
+        
+        for(int i=l; i<=r; i++){
+            x = x | (y & (1<<i));
+        }
+        
+        return x;
+    }
