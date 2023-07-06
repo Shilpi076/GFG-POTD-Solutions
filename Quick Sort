@@ -1,0 +1,38 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/quick-sort/1
+Solution :-
+=> In this problem we have to implement quick sort.
+=> In quick sort we use divide and conquer algorithm, we create a partition in the array, and the index at which the partition is created will be the actual index of pivot
+   element in the sorted array, to chose pivot element we can select any index of array here I have chosen the last index of array and the function partition will return the
+   actual index of pivot element in the sorted array.
+=> In the partition function we initially chose an index(pivot index) and keep count of number and elements smaller than the pivot element, and keep swapping the elements
+   iteratively with the index at which there should be an element which is less than pivot element, so that all the elements less than the pivot element will come before the
+   pivot index and all the elements greater than pivot element will come after pivot element.
+=> At last we will swap the pivot index element with (1+count)th index where count is the number of elements less than the pivot element, so that chosen pivot element will
+   come at its actual index in the sorted array.
+Code :-
+ void quickSort(int arr[], int l, int h)
+    {
+        // code here
+        if(l<h){
+            int pi = partition(arr,l,h);
+            quickSort(arr,l,pi-1);
+            quickSort(arr,pi+1,h);
+        }
+    }
+    
+    public:
+    int partition (int arr[], int l, int h)
+    {
+       // Your code here
+       int i = l;
+       int pi = h;
+       
+       for(int j=l; j<h; j++){
+           if(arr[j]<arr[pi]){
+               swap(arr[j],arr[i]);
+               i++;
+           }
+       }
+       swap(arr[i],arr[pi]);
+       return i;
+    }
