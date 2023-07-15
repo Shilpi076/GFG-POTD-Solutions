@@ -1,0 +1,25 @@
+Problem Link :- https://practice.geeksforgeeks.org/problems/delete-middle-element-of-a-stack/1
+Solution :-
+Using recursive stack space, store the top element in recursion stack space and when finally we pop the middle element when we come back from recursion we push the stored top elemen
+Code :-
+void delete_mid(stack<int> &st, int size, int &count){
+        if(st.empty()) return;
+        
+        if(count==size/2) {
+            st.pop();
+            return;
+        }
+        count = count+1;
+        int temp = st.top();
+        st.pop();
+        delete_mid(st,size,count);
+        st.push(temp);
+    }
+    
+    void deleteMid(stack<int>&st, int size)
+    {
+        // code here.. 
+        int count = 0;
+        if(st.empty()) return;
+        delete_mid(st,size,count);
+    }
